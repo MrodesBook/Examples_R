@@ -26,11 +26,11 @@ Ainv = getAInv(ped = pedX)
 cow = rep(seq(4, 8), each = 2)
 fy = c(201, 280, 150, 200, 160, 190, 180, 250, 285, 300)
 hys = c(1, 3, 1, 4, 2, 3, 1, 3, 2, 4)
-pairity = rep(c(1,2), 5)
+parity = rep(c(1,2), 5)
 
-data = data.frame(cow, pairity, hys, fy)
+data = data.frame(cow, parity, hys, fy)
 
-data$pairity = as.factor(pairity)
+data$parity = as.factor(parity)
 data$hys = as.factor(hys)
 data$hys = relevel(factor(hys), ref = "1")
 data$cow = factor(x = data$cow, levels = pedX@label)
@@ -47,7 +47,7 @@ alpha2 = varE / varP
 rep = (varA + varP) / varY 
 
 # Setting up the incidence matrices for the MME
-X = model.matrix(fy ~ -1 + pairity + hys, data = data)
+X = model.matrix(fy ~ -1 + parity + hys, data = data)
 X = X[,-4]
 
 Z = model.matrix(fy ~ cow - 1, data = data)
