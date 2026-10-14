@@ -56,6 +56,18 @@ data = data.frame(c(tdy_4, tdy_5, tdy_6, tdy_7, tdy_8), rep(1:10, 5), rep(4:8, e
 
 colnames(data) = c("tdy", "htd", "animals")
 
+# Prepare pedigree
+a = seq(1, 8)
+s = c(NA, NA, NA, 1, 3, 1, 3, 1)
+d = c(NA, NA, NA, 2, 2, 5, 4, 7)
+ped = data.frame(a, s, d)
+
+pedX = pedigree(label = a,
+                sire  = s,
+                dam   = d)
+
+Ainv = getAInv(ped = pedX)
+
 data$htd = as.factor(htd)
 data$htd = relevel(factor(htd), ref = "10")
 data$animals = factor(x = data$animals, levels = pedX@label)
@@ -74,18 +86,6 @@ varE = 3.710
 # Variance ratios 
 alpha1 = varE / varA
 alpha2 = varE / varP
-
-# Prepare pedigree
-a = seq(1, 8)
-s = c(NA, NA, NA, 1, 3, 1, 3, 1)
-d = c(NA, NA, NA, 2, 2, 5, 4, 7)
-ped = data.frame(a, s, d)
-
-pedX = pedigree(label = a,
-                sire  = s,
-                dam   = d)
-
-Ainv = getAInv(ped = pedX)
 
 # Setting up the incidence matrices for the MME
 X1 = model.matrix(tdy ~ -1 + htd, data = data)

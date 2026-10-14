@@ -80,7 +80,7 @@ RHS = rbind(Xpy,
 # Constraints
 LHS = LHS[,-c(11)]
 LHS = LHS[-c(11),]
-RHS = RHS[-c(11),]
+RHS = RHS[-c(11), , drop = FALSE]
 
 solutions_QP = solve(LHS, RHS)
 
@@ -126,7 +126,7 @@ RHS = rbind(Xpy,
 # Constraints
 LHS = LHS[,-c(11)]
 LHS = LHS[-c(11),]
-RHS = RHS[-c(11),]
+RHS = RHS[-c(11), , drop = FALSE]
 
 solutions = solve(LHS, RHS)
 rownames(solutions) = c("Males", "Females", 

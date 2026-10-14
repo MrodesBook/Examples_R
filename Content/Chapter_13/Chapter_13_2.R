@@ -11,7 +11,7 @@ library("tidyverse")
 # Example 13.3 ------------------------------------------------------------
 
 # Read pedigree and SNP genotypes
-ped = read_table2(file = "ped_snp.txt", col_names = FALSE)
+ped = read_table(file = "ped_snp.txt", col_names = FALSE)
 
 colnames(ped) = c("Animal", "Sire", "Dam", "Sex",
                    paste("Snp_", 1:(length(ped)-4), sep = ""))
